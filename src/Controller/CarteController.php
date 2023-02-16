@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarteController extends AbstractController
 {
-    #[Route('/carte', name: 'app_carte', methods:['GET'])]
+    #[Route('/carte', name: 'carte.index', methods:['GET'])]
     public function index(): Response
     {
         return $this->render('pages/carte/index.html.twig', [
