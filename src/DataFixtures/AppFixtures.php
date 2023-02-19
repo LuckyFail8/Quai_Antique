@@ -7,6 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 class AppFixtures extends Fixture
@@ -32,7 +33,7 @@ class AppFixtures extends Fixture
                 ->setName($this->faker->firstName())
                 ->setEmail($this->faker->email())
                 ->setRoles(['ROLE_USER'])
-                ->setPassword('password');
+                ->setPlainPassword('password');
             $manager->persist($user);
         }
 
