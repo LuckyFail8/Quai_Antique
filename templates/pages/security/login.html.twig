@@ -6,6 +6,13 @@
 {% block body %}
     <div class="container">
         <h1 class='mt-4'>Formulaire de connexion</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {% if error %}
             <div class="alert alert-danger mt-4">
                 {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -24,6 +31,9 @@
             <button type="submit" class="btn btn-primary mt-4">
                 Se connecter
             </button>
+            <a  class="btn btn-secondary mt-4" href="{{ path('security.registration')}}">
+                S'inscricre
+            </a>
         </form>
     </div>
 {% endblock %}
