@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -51,9 +53,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $CreatedAt = null;
 
+    #[ORM\ManyToMany(targetEntity: allergy::class, inversedBy: 'users')]
+    private Collection $Allergies;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $Nbr_of_covers_by_default = null;
+
     public function __construct()
     {
         $this->CreatedAt = new \DateTimeImmutable();
+        $this->Allergies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,4 +189,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return string|null
      */
+
+    /**
+     * @return Collection<int, allergy>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->Allergies;
+    }
+
+    public function addAllergy(allergy $allergy): self
+    {
+        if (!$this->Allergies->contains($allergy)) {
+            $this->Allergies->add($allergy);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(allergy $allergy): self
+    {
+        $this->Allergies->removeElement($allergy);
+
+        return $this;
+    }
+
+    public function getNbrOfCoversByDefault(): ?int
+    {
+        return $this->Nbr_of_covers_by_default;
+    }
+
+    public function setNbrOfCoversByDefault(?int $Nbr_of_covers_by_default): self
+    {
+        $this->Nbr_of_covers_by_default = $Nbr_of_covers_by_default;
+
+        return $this;
+    }
 }
