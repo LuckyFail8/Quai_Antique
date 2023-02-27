@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AllergyController extends AbstractController
 {
-    #[Route('/allergy', name: 'app_allergy')]
+    #[Route('/allergie', name: 'app_allergy')]
     public function createAllergy(ManagerRegistry $doctrine): Response
     {
         $entitymanager = $doctrine->getManager();
