@@ -57,6 +57,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $Allergies;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\PositiveOrZero]
+    #[Assert\LessThanOrEqual(10)]
     private ?int $Nbr_of_covers_by_default = null;
 
     public function __construct()
