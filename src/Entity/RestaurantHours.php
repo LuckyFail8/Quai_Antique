@@ -16,8 +16,8 @@ class RestaurantHours
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $Day = null;
+    #[ORM\Column(length: 50)]
+    private ?string $Day = null;
 
     #[ORM\Column(length: 50)]
     private ?string $Half_day = null;
@@ -44,12 +44,12 @@ class RestaurantHours
         return $this->id;
     }
 
-    public function getDay(): ?\DateTimeInterface
+    public function getDay(): ?string
     {
         return $this->Day;
     }
 
-    public function setDay(\DateTimeInterface $Day): self
+    public function setDay(string $Day): self
     {
         $this->Day = $Day;
 

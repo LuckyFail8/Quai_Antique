@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $CreatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: allergy::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'users')]
     private Collection $Allergies;
 
     #[ORM\Column(nullable: true)]
