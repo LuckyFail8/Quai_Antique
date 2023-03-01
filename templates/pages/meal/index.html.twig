@@ -11,12 +11,15 @@
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ meal.title }}</h5>
-                        <small class="text-muted">{{ meal.price }}
+                        <small class="text-muted">{{ meal.price | number_format(2, ',', ' ') }}
                             €</small>
                     </div>
                     <p class="mb-1">{{ meal.description }}</p>
                 </div>
             {% endfor %}
+        </div>
+        <div class="navigation mt-4 d-flex justify-content-center">
+            {{ knp_pagination_render(meals) }}
         </div>
     </div>
 {% endblock %}
