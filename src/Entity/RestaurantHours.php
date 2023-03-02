@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RestaurantHoursRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use App\Repository\RestaurantHoursRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RestaurantHoursRepository::class)]
 class RestaurantHours
@@ -19,17 +21,29 @@ class RestaurantHours
     #[ORM\Column(length: 50)]
     private ?string $Day = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $Half_day = null;
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[Assert\Time]
+    private ?\DateTimeInterface $Opening_lunch = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $Open_at = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $Close_at = null;
+    #[Assert\Time]
+    private ?\DateTimeInterface $Closing_lunch = null;
 
     #[ORM\Column]
-    private ?int $Number_max_guests = null;
+    #[Assert\PositiveOrZero]
+    private ?int $Places_available_lunch = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[Assert\Time]
+    private ?\DateTimeInterface $Opening_dinner = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[Assert\Time]
+    private ?\DateTimeInterface $Closing_dinner = null;
+
+    #[ORM\Column]
+    #[Assert\PositiveOrZero]
+    private ?int $Places_available_dinner = null;
 
     #[ORM\OneToMany(mappedBy: 'Restaurant_hour', targetEntity: Reservation::class, orphanRemoval: true)]
     private Collection $reservations;
@@ -56,50 +70,76 @@ class RestaurantHours
         return $this;
     }
 
-    public function getHalfDay(): ?string
+
+
+    public function getOpeningLunch(): ?\DateTimeInterface
     {
-        return $this->Half_day;
+        return $this->Opening_lunch;
     }
 
-    public function setHalfDay(string $Half_day): self
+    public function setOpeningLunch(?\DateTimeInterface $Opening_lunch): self
     {
-        $this->Half_day = $Half_day;
+        $this->Opening_lunch = $Opening_lunch;
 
         return $this;
     }
 
-    public function getOpenAt(): ?\DateTimeInterface
+    public function getClosingLunch(): ?\DateTimeInterface
     {
-        return $this->Open_at;
+        return $this->Closing_lunch;
     }
 
-    public function setOpenAt(?\DateTimeInterface $Open_at): self
+    public function setClosingLunch(?\DateTimeInterface $Closing_lunch): self
     {
-        $this->Open_at = $Open_at;
+        $this->Closing_lunch = $Closing_lunch;
 
         return $this;
     }
 
-    public function getCloseAt(): ?\DateTimeInterface
+    public function getPlaceAvailableLunch(): ?int
     {
-        return $this->Close_at;
+        return $this->Places_available_lunch;
     }
 
-    public function setCloseAt(?\DateTimeInterface $Close_at): self
+    public function setPlaceAvailableLunch(int $Places_available_lunch): self
     {
-        $this->Close_at = $Close_at;
+        $this->Places_available_lunch = $Places_available_lunch;
 
         return $this;
     }
 
-    public function getNumberMaxGuests(): ?int
+    public function getOpeningDinner(): ?\DateTimeInterface
     {
-        return $this->Number_max_guests;
+        return $this->Opening_dinner;
     }
 
-    public function setNumberMaxGuests(int $Number_max_guests): self
+    public function setOpeningDinner(?\DateTimeInterface $Opening_dinner): self
     {
-        $this->Number_max_guests = $Number_max_guests;
+        $this->Opening_dinner = $Opening_dinner;
+
+        return $this;
+    }
+
+    public function getClosingDinner(): ?\DateTimeInterface
+    {
+        return $this->Closing_dinner;
+    }
+
+    public function setClosingDinner(?\DateTimeInterface $Closing_dinner): self
+    {
+        $this->Closing_dinner = $Closing_dinner;
+
+        return $this;
+    }
+
+    public function getPlaceAvailableDinner(): ?int
+    {
+        return $this->Places_available_dinner;
+    }
+
+    public function setPlaceAvailableDinner(int $Places_available_dinner): self
+    {
+        $this->Places_available_dinner = $Places_available_dinner;
 
         return $this;
     }

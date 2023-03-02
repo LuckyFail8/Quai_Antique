@@ -11,13 +11,26 @@
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ restaurantHour.day }}</h5>
-                        <small class="text-muted">{{ restaurantHour.openAt | date('H:i') }}
-                            -
-                            {{ restaurantHour.closeAt | date('H:i') }}
-                        </small>
+                        <div class="flex-column">
+                            <small class="text-muted">{{ restaurantHour.openingLunch | date('H:i') }}
+                                -
+                                {{ restaurantHour.closingLunch | date('H:i') }}
+                            </small>
+                            <small class="text-muted">{{ restaurantHour.openingDinner | date('H:i') }}
+                                -
+                                {{ restaurantHour.closingDinner | date('H:i') }}
+                            </small>
+                        </div>
                     </div>
-                    <p class="mb-1">{{ restaurantHour.halfday }}</p>
+                    <p class="mb-1">Places disponible pour le service du midi
+                        {{ restaurantHour.placesAvailableLunch }}</p>
+                    <p class="mb-1">Places disponible pour le service du soir
+                        {{ restaurantHour.placesAvailableDinner }}</p>
                 </div>
+                <pre>
+                    {{ dump(restaurantHour.day, restaurantHour.numberMaxGuests) }}
+                </pre>
+
             {% endfor %}
         </div>
     </div>
