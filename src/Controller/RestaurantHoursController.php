@@ -36,10 +36,10 @@ class RestaurantHoursController extends AbstractController
                 $restaurantHour->setDay($dayName)
                     ->setOpeningLunch(\DateTime::createFromFormat('H:i', '11:45'))
                     ->setClosingLunch(\DateTime::createFromFormat('H:i', '14:30'))
-                    ->setPlaceAvailableLunch(250)
+                    ->setPlacesAvailableLunch(250)
                     ->setOpeningDinner(\DateTime::createFromFormat('H:i', '19:00'))
                     ->setClosingDinner(\DateTime::createFromFormat('H:i', '23:00'))
-                    ->setPlaceAvailableDinner(250);
+                    ->setPlacesAvailableDinner(250);
                 $entitymanager->persist($restaurantHour);
             }
 

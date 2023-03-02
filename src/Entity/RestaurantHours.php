@@ -96,12 +96,12 @@ class RestaurantHours
         return $this;
     }
 
-    public function getPlaceAvailableLunch(): ?int
+    public function getPlacesAvailableLunch(): ?int
     {
         return $this->Places_available_lunch;
     }
 
-    public function setPlaceAvailableLunch(int $Places_available_lunch): self
+    public function setPlacesAvailableLunch(int $Places_available_lunch): self
     {
         $this->Places_available_lunch = $Places_available_lunch;
 
@@ -132,12 +132,12 @@ class RestaurantHours
         return $this;
     }
 
-    public function getPlaceAvailableDinner(): ?int
+    public function getPlacesAvailableDinner(): ?int
     {
         return $this->Places_available_dinner;
     }
 
-    public function setPlaceAvailableDinner(int $Places_available_dinner): self
+    public function setPlacesAvailableDinner(int $Places_available_dinner): self
     {
         $this->Places_available_dinner = $Places_available_dinner;
 
