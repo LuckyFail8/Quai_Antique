@@ -17,11 +17,15 @@ class Photo
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Vich\UploadableField(mapping: 'quai_images', fileNameProperty: 'ImageName')]
-    private ?File $ImageFile = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $ImageName = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $file = null;
+
+    #[Vich\UploadableField(mapping: 'quai_images', fileNameProperty: 'file')]
+    private ?File $ImageFile = null;
 
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -64,11 +68,11 @@ class Photo
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $ImageFile
      */
-    public function setImageFile(?File $ImageFile = null): void
+    public function setImageFile(?File $file = null): void
     {
-        $this->ImageFile = $ImageFile;
+        $this->ImageFile = $file;
 
-        if (null !== $ImageFile) {
+        if (null !== $file) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->UpdatedAt = new \DateTimeImmutable();
@@ -110,6 +114,19 @@ class Photo
     public function setUpdatedAt(\DateTimeImmutable $UpdatedAt): self
     {
         $this->UpdatedAt = $UpdatedAt;
+
+        return $this;
+    }
+
+
+    public function getFile(): ?string
+    {
+        return $this->file;
+    }
+
+    public function setFile($file): self
+    {
+        $this->file = $file;
 
         return $this;
     }

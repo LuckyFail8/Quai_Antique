@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PhotoCrudController extends AbstractCrudController
 {
@@ -23,6 +24,7 @@ class PhotoCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Photos')
             ->setEntityLabelInSingular('Photo')
             ->setPageTitle('index', 'Quai Antique - Administration des photos')
+            ->setDefaultSort(['CreatedAt' => 'DESC'])
             ->setPaginatorPageSize(20);
     }
 
@@ -35,8 +37,13 @@ class PhotoCrudController extends AbstractCrudController
                 ->setLabel('Nom de l\'image'),
             TextField::new('text_alt')
                 ->setLabel('Texte alternatif (Description)'),
-            TextareaField::new('ImageFile')
-                ->hideOnIndex()
+            TextField::new('ImageFile')
+                ->setFormType(VichImageType::class)
+                ->setLabel('Importez votre image')
+                ->onlyWhenCreating(),
+            ImageField::new('file')
+                ->setBasePath('/uploads/images/')
+                ->onlyOnIndex(),
         ];
     }
 }
