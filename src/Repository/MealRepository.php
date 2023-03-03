@@ -49,8 +49,16 @@ class MealRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
+    public function findMealsByCategory(string $categoryName): array
+    {
+        return $this->createQueryBuilder('m')
+            ->join('m.category', 'mc')
+            ->join('mc.category', 'c')
+            ->where('c.name = :categoryName')
+            ->setParameter('categoryName', $categoryName)
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Meal[] Returns an array of Meal objects
     //     */

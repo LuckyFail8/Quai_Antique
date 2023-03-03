@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\PhotoRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
+#[Vich\Uploadable]
 class Photo
 {
     #[ORM\Id]
@@ -14,30 +17,30 @@ class Photo
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $Title = null;
+    #[Vich\UploadableField(mapping: 'quai_images', fileNameProperty: 'ImageName')]
+    private ?File $ImageFile = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $ImageName = null;
+
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Text_alt = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $Image = null;
+    #[ORM\Column]
+    private ?\DateTimeImmutable $CreatedAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $UpdatedAt = null;
+
+    public function __construct()
+    {
+        $this->CreatedAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->Title;
-    }
-
-    public function setTitle(string $Title): self
-    {
-        $this->Title = $Title;
-
-        return $this;
     }
 
     public function getTextAlt(): ?string
@@ -52,14 +55,61 @@ class Photo
         return $this;
     }
 
-    public function getImage()
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $ImageFile
+     */
+    public function setImageFile(?File $ImageFile = null): void
     {
-        return $this->Image;
+        $this->ImageFile = $ImageFile;
+
+        if (null !== $ImageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->UpdatedAt = new \DateTimeImmutable();
+        }
     }
 
-    public function setImage($Image): self
+    public function getImageFile(): ?File
     {
-        $this->Image = $Image;
+        return $this->ImageFile;
+    }
+
+    public function setImageName(?string $ImageName): void
+    {
+        $this->ImageName = $ImageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->ImageName;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->UpdatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $UpdatedAt): self
+    {
+        $this->UpdatedAt = $UpdatedAt;
 
         return $this;
     }
