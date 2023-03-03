@@ -197,23 +197,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
 
     /**
-     * @return Collection<int, allergy>
+     * @return Collection<int, Allergy>
      */
     public function getAllergies(): Collection
     {
         return $this->Allergies;
     }
 
-    public function addAllergy(allergy $allergy): self
+    public function addAllergy(Allergy $allergy): self
     {
         if (!$this->Allergies->contains($allergy)) {
             $this->Allergies->add($allergy);
+            $allergy->addUser($this);
         }
 
         return $this;
     }
 
-    public function removeAllergy(allergy $allergy): self
+    public function removeAllergy(Allergy $allergy): self
     {
         $this->Allergies->removeElement($allergy);
 

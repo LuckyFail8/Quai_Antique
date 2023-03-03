@@ -33,7 +33,8 @@ class RestaurantHoursCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-                ->hideOnIndex(),
+                ->hideOnIndex()
+                ->hideOnForm(),
             TextField::new('day')
                 ->setLabel('Jours de la semaine'),
             TimeField::new('opening_lunch')
@@ -43,7 +44,7 @@ class RestaurantHoursCrudController extends AbstractCrudController
                 ->setFormat('HH:mm')
                 ->setLabel('Midi - Fermeture'),
             IntegerField::new('places_available_lunch')
-                ->setLabel('Place disponible le midi'),
+                ->setLabel('Places disponible le midi'),
             TimeField::new('opening_dinner')
                 ->setFormat('HH:mm')
                 ->setLabel('Soir - Ouverture'),
@@ -51,7 +52,7 @@ class RestaurantHoursCrudController extends AbstractCrudController
                 ->setFormat('HH:mm')
                 ->setLabel('Soir - Fermeture'),
             IntegerField::new('places_available_dinner')
-                ->setLabel('Place disponible le soir'),
+                ->setLabel('Places disponible le soir'),
         ];
     }
 }

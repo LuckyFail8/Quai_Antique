@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -41,7 +42,10 @@ class UserCrudController extends AbstractCrudController
                 ->hideOnIndex(),
             DateTimeField::new('created_at')
                 ->setFormTypeOption('disabled', 'disabled'),
-            IntegerField::new('Nbr_of_covers_by_default'),
+            IntegerField::new('Nbr_of_covers_by_default')
+                ->setLabel('Nombre de couverts par defaut'),
+            AssociationField::new('Allergies')
+                ->setLabel('Allergies')
         ];
     }
 }
