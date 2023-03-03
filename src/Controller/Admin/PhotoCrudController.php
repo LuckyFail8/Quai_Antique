@@ -44,6 +44,9 @@ class PhotoCrudController extends AbstractCrudController
             ImageField::new('file')
                 ->setBasePath('/uploads/images/')
                 ->onlyOnIndex(),
+            TextareaField::new('ImageFile')
+                ->setFormType(VichImageType::class)
+                ->onlyOnForms(),
         ];
     }
 }
