@@ -4,14 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Entity\RestaurantHours;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Option\Option;
 
 class RestaurantHoursCrudController extends AbstractCrudController
 {
@@ -29,8 +27,11 @@ class RestaurantHoursCrudController extends AbstractCrudController
             ->setPaginatorPageSize(20);
     }
 
+
+
     public function configureFields(string $pageName): iterable
     {
+
         return [
             IdField::new('id')
                 ->hideOnIndex()
