@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservez votre table
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="mt-4">Réserver votre table</h1>
+    {#         {% form_theme formReservation _self %}
+
+        {% block _allergy_widget %}
+            <div class="form-check">
+                {{ form_widget(formReservation) }}
+                {{ form_label(formReservation) }}
+            </div>
+        {% endblock %}
+
+        {{ form_start(formReservation) }}
+
+        {% for allergy in formReservation.Allergies %}
+            <div class="form-group">
+                {{ form_widget(allergy) }}
+                {{ form_label(allergy, allergy.vars.value.name) }}
+            </div>
+        {% endfor %}
+
+        {{ form_end(formReservation) }} #}
+        {{ form(formReservation) }}{% endblock %}

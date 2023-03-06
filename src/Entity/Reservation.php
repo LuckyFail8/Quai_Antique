@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,6 +32,14 @@ class Reservation
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $User = null;
+
+    #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'reservations')]
+    private Collection $Allergy;
+
+    public function __construct()
+    {
+        $this->Allergy = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -92,6 +102,30 @@ class Reservation
     public function setUser(?User $User): self
     {
         $this->User = $User;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Allergy>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->Allergy;
+    }
+
+    public function addAllergy(Allergy $allergy): self
+    {
+        if (!$this->Allergy->contains($allergy)) {
+            $this->Allergy->add($allergy);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Allergy $allergy): self
+    {
+        $this->Allergy->removeElement($allergy);
 
         return $this;
     }
