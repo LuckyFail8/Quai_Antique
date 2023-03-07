@@ -119,7 +119,7 @@ class RegistrationType extends AbstractType
                 'placeholder' => 'Avez-vous des allergies?',
                 'required' => false,
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
             ])
 

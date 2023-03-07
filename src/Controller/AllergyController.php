@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Allergy;
+use App\Form\AllergyType;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AllergyController extends AbstractController
 {
@@ -46,5 +47,17 @@ class AllergyController extends AbstractController
         } else {
             return new Response('Les allergies ont déjà été insérées dans la base de données.');
         }
+    }
+
+    #[Route('/allergyForm', name: 'allergyForm.index', methods: ['GET', 'POST'])]
+    public function allergyForm(): Response
+    {
+
+        $formAllergy = $this->createForm(AllergyType::class);
+
+        return $this->render('pages/allergy/index.html.twig', [
+            'formAllergy' => $formAllergy->createView(),
+
+        ]);
     }
 }

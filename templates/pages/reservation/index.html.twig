@@ -5,25 +5,25 @@
 
 {% block body %}
 
-<div class="container">
-    <h1 class="mt-4">Réserver votre table</h1>
-    {#         {% form_theme formReservation _self %}
-
-        {% block _allergy_widget %}
-            <div class="form-check">
-                {{ form_widget(formReservation) }}
-                {{ form_label(formReservation) }}
-            </div>
-        {% endblock %}
+    <div class="container">
+        <h1 class="mt-4">Réserver votre table</h1>
 
         {{ form_start(formReservation) }}
+        {{ form_row(formReservation.Date) }}
+        {{ form_row(formReservation.time_slot) }}
+        {{ form_end(formReservation) }}
 
-        {% for allergy in formReservation.Allergies %}
-            <div class="form-group">
-                {{ form_widget(allergy) }}
-                {{ form_label(allergy, allergy.vars.value.name) }}
-            </div>
-        {% endfor %}
+    {% endblock %}
 
-        {{ form_end(formReservation) }} #}
-        {{ form(formReservation) }}{% endblock %}
+    {% block javascript %}
+        <script>
+            window.onload = () => {
+                let date = document.querySelector("#reservation_Date");
+
+                date.addEventListener("change", function () {
+                    let form = this.closest("form");
+                    console.log(2);
+                });
+            }
+        </script>
+    {% endblock %}
