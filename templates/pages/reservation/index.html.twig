@@ -17,13 +17,10 @@
 
     {% block javascript %}
         <script>
-            window.onload = () => {
-                let date = document.querySelector("#reservation_Date");
+            let date = document.querySelector("#reservation_Date");
 
-                date.addEventListener("change", function () {
-                    let form = this.closest("form");
-                    console.log(2);
-                });
-            }
+            date.addEventListener("change", function () {
+                this.setAttribure('value', this.value);
+            });
         </script>
     {% endblock %}
