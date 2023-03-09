@@ -34,14 +34,14 @@ class ReservationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $now = new \DateTime();
-        $timeSlots = $this->getTimeSlots($now);
+        // $now = new \DateTime();
+        // $timeSlots = $this->getTimeSlots($now);
+        // dd($now);
 
         $builder
             ->add('Date', DateType::class, [
                 'widget' => 'single_text',
                 'html5' => true,
-                'data' => new \DateTime(),
                 'attr' => [
                     'class' => 'datepicker',
                 ]
@@ -64,28 +64,20 @@ class ReservationType extends AbstractType
                     'class' => 'form-label'
                 ],
             ])
-            ->add('time_slot', ChoiceType::class, [
-                'mapped' => false,
-                'multiple' => false,
-                'expanded' => true,
-                'label' => 'Horaire de reservation',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'choices' => $timeSlots,
-
-            ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4'
                 ]
             ]);
 
-
-        $formModifier = function (FormInterface $form, \DateTimeInterface $date = null) {
+        $formModifier = function (FormInterface $form, ?\DateTimeInterface $date = null) {
             $timeSlots = $this->getTimeSlots($date);
 
-            $form->add('time-slot', ChoiceType::class, [
+
+
+            $form->remove('time_slot');
+
+            $form->add('time_slot', ChoiceType::class, [
                 'mapped' => false,
                 'multiple' => false,
                 'expanded' => true,
@@ -96,18 +88,6 @@ class ReservationType extends AbstractType
                 'choices' => $timeSlots,
             ]);
         };
-
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($formModifier) {
-                $form = $event->getForm();
-                $reservation = $event->getData();
-                $date = $reservation ? $reservation->getDate() : new \DateTime();
-
-                $formModifier($form, $date);
-            }
-        );
 
         $builder->get('Date')->addEventListener(
             FormEvents::POST_SUBMIT,
@@ -120,10 +100,51 @@ class ReservationType extends AbstractType
         );
 
 
+        $builder->add('time_slot', ChoiceType::class, [
+            'mapped' => false,
+            'multiple' => false,
+            'expanded' => true,
+            'label' => 'Horaire de reservation',
+            'attr' => [
+                'class' => 'form-control'
+            ],
+            'choices' => [],
+
+        ]);
 
 
-        /*         $builder->get('Date')->addEventListener(
+        /* 
+
+        $formModifier = function (FormInterface $form, \DateTimeInterface $date = null) {
+            $timeSlots = $this->getTimeSlots($date);
+
+            $form->add('time-slot2', ChoiceType::class, [
+                'mapped' => false,
+                'multiple' => false,
+                'expanded' => true,
+                'label' => 'Horaire de reservation',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'choices' => $timeSlots,
+            ]);
+        };
+
+        $builder->get('Date')->addEventListener(
             FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                $form = $event->getForm()->getParent();
+                $date = $event->getForm()->getData();
+
+                $formModifier($form, $date);
+            }
+        ); */
+
+
+
+        /* 
+        $builder->get('Date')->addEventListener(
+            FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
                 $form = $event->getForm();
                 $data = $event->getData();
