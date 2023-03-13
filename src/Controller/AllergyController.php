@@ -53,10 +53,12 @@ class AllergyController extends AbstractController
     public function allergyForm(): Response
     {
 
+        $user = $this->getUser();
         $formAllergy = $this->createForm(AllergyType::class);
 
         return $this->render('pages/allergy/index.html.twig', [
             'formAllergy' => $formAllergy->createView(),
+            'user' => $user,
 
         ]);
     }

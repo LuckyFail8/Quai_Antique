@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Réservez votre table
 {% endblock %}
 
 {% block body %}
 
     <div class="container">
-        <h1 class="mt-4">Réserver votre table</h1>
-        {{ form(formAllergy) }}{% endblock %}
+        {% block form_row %}
+            <div class="form-check">
+                {{ form_label(formAllergy) }}
+                {{ form_widget(formAllergy) }}
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

@@ -11,16 +11,7 @@
         {{ form_start(formReservation) }}
         {{ form_row(formReservation.Date) }}
         {{ form_row(formReservation.time_slot) }}
+        {{ form_row(formReservation.Allergies) }}
         {{ form_end(formReservation) }}
 
-    {% endblock %}
-
-    {% block javascript %}
-        <script>
-            let date = document.querySelector("#reservation_Date");
-
-            date.addEventListener("change", function () {
-                this.setAttribure('value', this.value);
-            });
-        </script>
     {% endblock %}

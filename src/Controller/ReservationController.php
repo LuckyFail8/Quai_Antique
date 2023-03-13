@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Repository\RestaurantHoursRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,7 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/reservation', name: 'reservation.index', methods: ['GET', 'POST'])]
-    public function newReservation(Request $request, EntityManagerInterface $manager): Response
+    public function newReservation(Request $request, EntityManagerInterface $manager, RestaurantHoursRepository $restaurantHoursRepository): Response
     {
 
         $reservation = new Reservation;
@@ -32,10 +33,24 @@ class ReservationController extends AbstractController
             foreach ($allergies as $allergy) {
                 $reservation->addAllergy($allergy);
             }
+            $hour = $formReservation->get('time_slot')->getData();
+            $hourDateTime = \DateTime::createFromFormat('H:i', $hour);
+            $reservation->setHour($hourDateTime);
+
+            $date = $formReservation->get('Date')->getData();
+            $restaurantHourId = $reservation->getRestaurantHourID($date);
+            $restaurantHour = $restaurantHoursRepository->findOneBy([
+                'id' => $restaurantHourId
+            ]);
+            $reservation->setRestaurantHour($restaurantHour);
+
+
+
+
 
             $this->addFlash(
                 'success',
-                'Votre compte a bien été créé'
+                'Votre réservation a bien été créé'
             );
 
             $manager->persist($reservation);
@@ -43,7 +58,6 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('security.login');
         }
 
-        $selectedDate = $request->query->get('selected_date');
 
 
 
