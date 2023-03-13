@@ -7,11 +7,14 @@ use App\Form\AllergyType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AllergyController extends AbstractController
 {
     #[Route('/allergie', name: 'app_allergy')]
+    #[IsGranted('ROLE_ADMIN')]
+
     public function createAllergy(ManagerRegistry $doctrine): Response
     {
         $entitymanager = $doctrine->getManager();

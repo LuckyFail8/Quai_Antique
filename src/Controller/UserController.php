@@ -2,15 +2,17 @@
 
 namespace App\Controller;
 
+use LogicException;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
-use LogicException;
 use Psr\Container\NotFoundExceptionInterface;
-use Psr\Container\ContainerExceptionInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
+use Psr\Container\ContainerExceptionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -23,13 +25,19 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $manager 
      * @return Response 
      */
+    #[Security("is_granted('ROLE_USER') and user === request.attributes.get('user')")]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
-    public function update(User $user, Request $request, EntityManagerInterface $manager): Response
-    {
-        if (!$this->getUser()) {
+    public function update(
+        User $user,
+        Request $request,
+        EntityManagerInterface $manager,
+        Security $security
+    ): Response {
+        $currentUser = $security->getUser();
+        if (!$currentUser) {
             return $this->redirectToRoute('security.login');
         }
-        if ($this->getUser() !== $user) {
+        if ($currentUser !== $user) {
             return $this->redirectToRoute('home.index');
         }
 
