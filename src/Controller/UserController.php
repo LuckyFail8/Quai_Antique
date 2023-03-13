@@ -38,6 +38,12 @@ class UserController extends AbstractController
         $formUser->handleRequest($request);
         if ($formUser->isSubmitted() && $formUser->isValid()) {
             $user = $formUser->getData();
+            $user->removeAllAllergies();
+            $allergies = $formUser->get('Allergies')->getData();
+            foreach ($allergies as $allergy) {
+                $user->addAllergy($allergy);
+            }
+
             $manager->persist($user);
             $manager->flush();
 
