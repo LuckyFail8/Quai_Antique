@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Allergy;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,13 +16,11 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class UserType extends AbstractType
 {
-    private $manager;
     private $security;
 
 
-    public function __construct(EntityManagerInterface $manager, Security $security)
+    public function __construct(Security $security)
     {
-        $this->manager = $manager;
         $this->security = $security;
     }
 
@@ -38,7 +35,7 @@ class UserType extends AbstractType
                 ],
                 'label' => 'Prénom',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label '
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -53,7 +50,7 @@ class UserType extends AbstractType
                 ],
                 'label' => 'Nom',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label '
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -69,7 +66,7 @@ class UserType extends AbstractType
                 'label' => 'Nombre de couvert par défaut (Facultatif)',
                 'required' => false,
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label '
                 ],
                 'constraints' => [
                     new Assert\PositiveOrZero,
