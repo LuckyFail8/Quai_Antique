@@ -4,15 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Repository\RestaurantHoursRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\RestaurantHoursRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ReservationController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
     #[Route('/reserver', name: 'reserver.index', methods: ['GET'])]
     public function index(): Response
     {
@@ -43,6 +50,11 @@ class ReservationController extends AbstractController
                 'id' => $restaurantHourId
             ]);
             $reservation->setRestaurantHour($restaurantHour);
+            $user = $this->security->getUser();
+            if ($user !== null) {
+                $reservation->setUser($user);
+            }
+
 
 
 
