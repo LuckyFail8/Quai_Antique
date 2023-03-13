@@ -52,14 +52,18 @@ class ReservationType extends AbstractType
             $userAllergies = null;
         }
         $builder->add('Allergies', EntityType::class, [
+            'attr' => [
+                'class' => 'form-control',
+            ],
             'class' => Allergy::class,
             'choice_label' => 'name',
-            'label' => 'Allergies',
+            'label' => 'Allergies (Facultatif)',
             'mapped' => false,
             'required' => false,
             'multiple' => true,
             'expanded' => true,
             'data' => $userAllergies
+
         ]);
 
 

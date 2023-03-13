@@ -38,6 +38,9 @@ class AllergyType extends AbstractType
             $userAllergies = null;
         }
         $builder->add('allergies', EntityType::class, [
+            'attr' => [
+                'class' => 'form-control',
+            ],
             'class' => Allergy::class,
             'choice_label' => 'name',
             'label' => 'Allergies',
