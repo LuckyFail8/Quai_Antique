@@ -31,6 +31,10 @@ class Photo
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Text_alt = null;
 
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $Carrousel = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $CreatedAt = null;
 
@@ -92,6 +96,19 @@ class Photo
     public function getImageName(): ?string
     {
         return $this->ImageName;
+    }
+
+
+    public function isCarrousel(): ?bool
+    {
+        return $this->Carrousel;
+    }
+
+    public function setCarrousel(?bool $Carrousel): self
+    {
+        $this->Carrousel = $Carrousel;
+
+        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

@@ -21,7 +21,7 @@ class MealController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    #[Route('/meal', name: 'app_meal')]
+    #[Route('/carte', name: 'carte.index')]
     public function index(MealRepository $mealRepository): Response
     {
         $entrees = $mealRepository->findMealsByCategoryId(1);

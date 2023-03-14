@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -41,6 +42,7 @@ class PhotoCrudController extends AbstractCrudController
                 ->setFormType(VichImageType::class)
                 ->setLabel('Importez votre image')
                 ->onlyWhenCreating(),
+            BooleanField::new('Carrousel'),
             ImageField::new('file')
                 ->setBasePath('/uploads/images/')
                 ->onlyOnIndex(),
