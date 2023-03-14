@@ -55,12 +55,12 @@ class RestaurantHoursController extends AbstractController
     }
 
 
-    #[Route('/horaire', name: 'app_restaurant_hours')]
+    #[Route('/horaire', name: 'restaurant_hour.index')]
     public function index(RestaurantHoursRepository $restaurantHoursRepository): Response
     {
         $restaurantHours = $restaurantHoursRepository->findAll();
 
-        return $this->render('pages/restaurant_hours/index.html.twig', [
+        return $this->render('pages/restaurant_hours/restaurant-hours.html.twig', [
             'restaurantHours' => $restaurantHours
         ]);
     }
