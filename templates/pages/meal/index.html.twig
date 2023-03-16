@@ -5,9 +5,25 @@
 
 {% block body %}
     <div class="container mt-4">
+        <nav class="nav_menu">
+            <ul class=" meals d-flex justify-content-center ">
+                <li>
+                    <a href="#" data-category="starters" class="starters">Les entrées</a>
+                </li>
+                <li>
+                    <a href="#" data-category="main-courses" class="main-courses">Les plats</a>
+                </li>
+                <li>
+                    <a href="#" data-category="desserts" class="desserts">Les desserts</a>
+                </li>
+                <li>
+                    <a href="#" data-category="drinks" class="drinks">Les boissons</a>
+                </li>
+            </ul>
+        </nav>
         <h1 class='mt-4'>La carte</h1>
-        <h2 class='mt-4'>Nos entrées</h2>
-        <div class="list-group mt-4">
+        <div class="list-group mt-4 plat" data-category="starters">
+            <h2 class='mt-4'>Nos entrées</h2>
             {% for entree in entrees %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -19,8 +35,8 @@
                 </div>
             {% endfor %}
         </div>
-        <h2 class='mt-4'>Nos plats</h2>
-        <div class="list-group mt-4">
+        <div class="list-group mt-4 plat" data-category="main-courses">
+            <h2 class='mt-4'>Nos plats</h2>
             {% for plat in plats %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -32,8 +48,8 @@
                 </div>
             {% endfor %}
         </div>
-        <h2 class='mt-4'>Nos desserts</h2>
-        <div class="list-group mt-4">
+        <div class="list-group mt-4 plat" data-category="desserts">
+            <h2 class='mt-4'>Nos desserts</h2>
             {% for entree in entrees %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -45,8 +61,8 @@
                 </div>
             {% endfor %}
         </div>
-        <h2 class='mt-4'>Nos boissons</h2>
-        <div class="list-group mt-4">
+        <div class="list-group mt-4 plat" data-category="drinks">
+            <h2 class='mt-4'>Nos boissons</h2>
             {% for entree in entrees %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">

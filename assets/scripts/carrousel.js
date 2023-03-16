@@ -1,10 +1,11 @@
 let counter = 0;
-let timer, carrouselItems, slides, slideWidth;
+let timer, carrouselItems, slides, slideWidth, carrouselItemTitle;
 
 window.onload = () => {
     const containerCarrousel = document.querySelector(".container-carrousel");
     const carrouselItems = document.querySelector(".carrousel-items");
     const carrouselItem = document.querySelector(".carrousel-item");
+
     
     let firstImage = carrouselItems.firstElementChild.cloneNode(true);
     carrouselItems.appendChild(firstImage);

@@ -12,6 +12,7 @@ import './styles/app.scss';
 import './bootstrap';
 import './scripts/timeslot';
 import './scripts/carrousel';
+import './scripts/meal';
 
 
 
