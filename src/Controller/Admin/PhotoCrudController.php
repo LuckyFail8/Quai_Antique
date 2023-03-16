@@ -35,6 +35,9 @@ class PhotoCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('ImageName')
+                ->hideOnIndex()
+                ->hideOnForm(),
+            TextField::new('ImageTitle')
                 ->setLabel('Nom de l\'image'),
             TextField::new('text_alt')
                 ->setLabel('Texte alternatif (Description)'),
@@ -43,8 +46,9 @@ class PhotoCrudController extends AbstractCrudController
                 ->setLabel('Importez votre image')
                 ->onlyWhenCreating(),
             BooleanField::new('Carrousel'),
-            ImageField::new('file')
+            ImageField::new('ImageName')
                 ->setBasePath('/uploads/images/')
+                ->setLabel('Vos images')
                 ->onlyOnIndex(),
             TextareaField::new('ImageFile')
                 ->setFormType(VichImageType::class)
