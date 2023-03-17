@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ path('home.index') }}">Accueil
+                    <a class="nav-link" href="{{ path('home.index') }}">Accueil
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
@@ -18,7 +18,9 @@
             <div class="d-flex">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('reservation.index') }}">Réserver</a>
+                        <a href=" {{ path('reservation.index') }} ">
+                            <button type="button" class="btn btn-dark m-4">Réserver</button>
+                        </a>
                     </li>
                     {% if app.user %}
                         <li class="nav-item dropdown" style="margin-right: 8rem;">
@@ -39,7 +41,9 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('security.login') }}">Se connecter</a>
+                            <a href="{{ path('security.login') }}">
+                                <button type="button" class="btn btn-primary m-4">Se connecter</button>
+                            </a>
                         </li>
                     {% endif %}
 

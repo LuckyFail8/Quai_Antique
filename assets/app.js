@@ -13,6 +13,7 @@ import './bootstrap';
 import './scripts/timeslot';
 import './scripts/carrousel';
 import './scripts/meal';
+import './scripts/navbar';
 
 
 

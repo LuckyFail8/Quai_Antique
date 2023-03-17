@@ -13,7 +13,6 @@ window.onload = () => {
     slides = Array.from(carrouselItems.children);
     
     slideWidth = carrouselItem.getBoundingClientRect().width;
-    console.log(slideWidth);
 
     let next = document.querySelector("#nav-right");
     let prev = document.querySelector("#nav-left");
