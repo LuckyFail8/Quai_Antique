@@ -17,8 +17,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-active">
-                    {% for reservation in reservations %}
+                {% for reservation in reservations %}
+                    <tr class="table-active">
                         <th scope="row">{{ reservation.id }}</th>
                         <td>{{ reservation.date|date('d/m/Y') }}</td>
                         <td>{{ reservation.hour|date('H:i') }}</td>
@@ -27,6 +27,7 @@
                     {% endfor %}
                 </tr>
             </tbody>
-        </div>
+        </table>
+    </div>
 
-    {% endblock %}
+{% endblock %}
