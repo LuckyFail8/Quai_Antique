@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ReservationRepository;
 use LogicException as GlobalLogicException;
 use App\Repository\RestaurantHoursRepository;
+use App\Repository\UserRepository;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -92,12 +93,18 @@ class ReservationController extends AbstractController
     #[Security("is_granted('ROLE_USER') and user === request.attributes.get('user')")]
 
     public function myReservation(
-        User $user,
+        int $id,
+        UserRepository $userRepository,
         ReservationRepository $reservationRepository,
         Security $security
     ): Response {
-        $currentUser = $security->getUser();
+        $user = $userRepository->find($id);
 
+        if (!$user) {
+            throw $this->createNotFoundException('User not found');
+        }
+
+        $currentUser = $security->getUser();
         if (!$currentUser) {
             return $this->redirectToRoute('security.login');
         }

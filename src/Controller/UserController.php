@@ -5,6 +5,7 @@ namespace App\Controller;
 use LogicException;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,12 +28,19 @@ class UserController extends AbstractController
      */
     #[Security("is_granted('ROLE_USER') and user === request.attributes.get('user')")]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
-    public function update(
-        User $user,
+    public function edit(
+        int $id,
+        UserRepository $userRepository,
         Request $request,
         EntityManagerInterface $manager,
         Security $security
     ): Response {
+        $user = $userRepository->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('User not found');
+        }
+
         $currentUser = $security->getUser();
         if (!$currentUser) {
             return $this->redirectToRoute('security.login');
