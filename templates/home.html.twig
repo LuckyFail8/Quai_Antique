@@ -1,49 +1,48 @@
 {% extends "base.html.twig" %}
-
-{% block title %}Quai Antique
+{% block title %}
+	Quai Antique
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-4 home">
-        <div class="text_carrousel d-flex row">
-            <div class="text-container col-12 col-lg-6">
-                <h1>Quai Antique</h1>
-                <h2>Venez goûter notre
-                    <span>Savoie-faire</span>
-                </h2>
-                <p>
-                    Situé dans un cadre idyllique, le restaurant Quai Antique vous invite à venir découvrir une expérience culinaire unique et mémorable. Dirigé par le talentueux Chef Michant, ce lieu offre un subtil mélange de tradition et de modernité, en alliant les saveurs authentiques de la cuisine savoyarde aux touches innovantes et créatives du Chef.
-                </p>
-                <p>
-                    Le Chef Michant, passionné et expérimenté, a forgé sa réputation en créant des plats raffinés et savoureux qui éveilleront tous vos sens. Chaque plat est préparé avec soin et amour, en utilisant les ingrédients les plus frais et les plus fins, issus des producteurs locaux.
-                </p>
-                <p>
-                    Le restaurant Quai Antique vous propose une carte variée et une sélection de menus, permettant à chacun de découvrir et savourer les délices culinaires imaginés par le Chef Michant. La présentation impeccable et le souci du détail témoignent de la passion et du dévouement du Chef et de son équipe.
-                </p>
-                <p>
-                    Le cadre chaleureux et élégant du Quai Antique, ainsi que son service attentionné, en font l'endroit idéal pour un dîner romantique, une célébration entre amis ou un repas d'affaires. Venez vivre une expérience gastronomique inoubliable au Quai Antique et laissez-vous séduire par les créations culinaires du Chef Michant.
-                </p>
-            </div>
-            <div class="container-carrousel col-12 col-lg-6">
-                <i id="nav-left" class="bi bi-chevron-left"></i>
-                <i id="nav-right" class="bi bi-chevron-right"></i>
-                <div class="carrousel-items">
-                    {% for photo in carrouselPhoto %}
-                        <div class="carrousel-item">
-                            <img src="{{ vich_uploader_asset(photo, 'ImageFile') }}" alt="{{ photo.textAlt }}">
-                                <div class="carrossel-item-title">
-                                    <h3>{{ photo.imageTitle }}</h3>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <a href=" {{ path('reservation.index') }} ">
-                        <button type="button" class="btn btn-dark m-4">Réserver</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-    {% endblock %}
+	<div class="container mt-4 home">
+		<div class="text_carrousel d-flex row">
+			<div class="text-container col-12 col-lg-6">
+				<h1>Quai Antique</h1>
+				<h2>Venez goûter notre
+					<span>Savoie-faire</span>
+				</h2>
+				<p>
+					Situé dans un cadre idyllique, le restaurant Quai Antique vous invite à venir découvrir une expérience culinaire unique et mémorable. Dirigé par le talentueux Chef Michant, ce lieu offre un subtil mélange de tradition et de modernité, en alliant les saveurs authentiques de la cuisine savoyarde aux touches innovantes et créatives du Chef.
+				</p>
+				<p>
+					Le Chef Michant, passionné et expérimenté, a forgé sa réputation en créant des plats raffinés et savoureux qui éveilleront tous vos sens. Chaque plat est préparé avec soin et amour, en utilisant les ingrédients les plus frais et les plus fins, issus des producteurs locaux.
+				</p>
+				<p>
+					Le restaurant Quai Antique vous propose une carte variée et une sélection de menus, permettant à chacun de découvrir et savourer les délices culinaires imaginés par le Chef Michant. La présentation impeccable et le souci du détail témoignent de la passion et du dévouement du Chef et de son équipe.
+				</p>
+				<p>
+					Le cadre chaleureux et élégant du Quai Antique, ainsi que son service attentionné, en font l'endroit idéal pour un dîner romantique, une célébration entre amis ou un repas d'affaires. Venez vivre une expérience gastronomique inoubliable au Quai Antique et laissez-vous séduire par les créations culinaires du Chef Michant.
+				</p>
+			</div>
+			<div class="container-carrousel col-12 col-lg-6">
+				<i id="nav-left" class="bi bi-chevron-left"></i>
+				<i id="nav-right" class="bi bi-chevron-right"></i>
+				<div class="carrousel-items">
+					{% for photo in carrouselPhoto %}
+						<div class="carrousel-item">
+							<img src="{{ vich_uploader_asset(photo, 'ImageFile') }}" alt="{{ photo.textAlt }}">
+							<div class="carrossel-item-title">
+								<h3>{{photo.imageTitle}}</h3>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="d-flex justify-content-end">
+				<a href=" {{ path('reservation.index') }} ">
+					<button type="button" class="btn btn-dark m-4">Réserver</button>
+				</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
