@@ -3,7 +3,7 @@
 		<div class="footer_bloc-haut">
 			<div>
 				<div class="d-flex justify-content-center">
-					<a href="#" class="p-2">La carte</a>
+					<a href="{{ path('carte.index') }}" class="p-2">La carte</a>
 					<a href="#" class="p-2">La brasserie</a>
 					<a href="#" class="p-2">Les allergènes</a>
 					<a href="#" class="p-2">Nous contacter</a>
@@ -17,9 +17,10 @@
 					</a>
 				</div>
 				<div class="d-flex text-center">
-					<a href="#" class="p-2 col-4">Mention légales</a>
-					<a href="#" class="p-2 col-4">Conditions générales de vente</a>
-					<a href="#" class="p-2 col-4">Politique de confidentialité</a>
+					<a href="{{ path('app_legal_notice') }}" class="p-2 col-6">
+						Mentions légales & conditions d’utilisation</a>
+
+					<a href="{{ path('app_privacy_policy') }}" class="p-2 col-6">Politique de confidentialité</a>
 				</div>
 			</div>
 			<div>
@@ -29,11 +30,9 @@
 				</div>
 				<div class="d-flex justify-content-center footer_social-networks">
 					<a href="" class="p-2">
-						<img src="" alt="">Instagram</a>
+						<img src="{{ asset('build/images/instagram.svg') }}" alt="Logo instagram"></a>
 					<a href="" class="p-2">
-						<img src="" alt="">Facebook</a>
-					<a href="" class="p-2">
-						<img src="" alt="">TikTok</a>
+						<img src="{{ asset('build/images/facebook.svg') }}" alt="Logo facebook"></a>
 				</div>
 			</div>
 		</div>
