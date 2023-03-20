@@ -1,6 +1,6 @@
 .container-carrousel {
     position: relative;
-    width: 520px;
+    width: 100%;
     height: 400px;
     overflow: hidden;
     margin: 0;
@@ -53,9 +53,9 @@
     right: 0;
 }
 
-@media(min-width: 768px) {
+@media(min-width: 992px) {
     .container-carrousel {
-        width: 520px;
-        height: 400px;
+        width: 50%;
+        align-self: center;        
     }
 }
