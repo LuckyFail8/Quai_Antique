@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AllergyController extends AbstractController
 {
-    #[Route('/allergie', name: 'app_allergy')]
+    #[Route('/addAllergies', name: 'app_allergy')]
     #[IsGranted('ROLE_ADMIN')]
 
     public function createAllergy(ManagerRegistry $doctrine): Response
