@@ -1,10 +1,5 @@
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Tarte aux myrtilles',
         'Pâte brisée, myrtilles, sucre, crème fraîche',
@@ -18,17 +13,12 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                title = 'Desserts'
+                name = 'Desserts'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Beignets aux pommes',
         'Pommes, farine, sucre, oeufs, lait',
@@ -42,17 +32,12 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                title = 'Desserts'
+                name = 'Desserts'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Gâteau de Savoie',
         'Farine, sucre, oeufs, levure, zeste de citron',
@@ -66,17 +51,12 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                title = 'Desserts'
+                name = 'Desserts'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Crème brûlée',
         'Crème fraîche, sucre, oeufs, vanille',
@@ -90,17 +70,12 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                title = 'Desserts'
+                name = 'Desserts'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Mousse au chocolat',
         'Chocolat noir, oeufs, sucre, crème fraîche',

@@ -1,10 +1,5 @@
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Salade de chèvre chaud',
         'Salade verte, chèvre chaud, noix, vinaigrette au miel',
@@ -18,17 +13,12 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                title = 'Entrées'
+                name = 'Entrées'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Soupe de légumes d\'hiver',
         'Carottes, poireaux, pommes de terre, navets, céleri, oignons, bouillon de légumes, crème fraîche',
@@ -42,17 +32,12 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                title = 'Entrées'
+                name = 'Entrées'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
+    meal (title, description, price)
 VALUES (
         'Croûte aux champignons',
         'Champignons de Paris, crème fraîche, ail, persil, pain de campagne',
@@ -66,6 +51,6 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                title = 'Entrées'
+                name = 'Entrées'
         )
     );

@@ -4,75 +4,75 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-4 la-carte">
-        <nav class="nav_menu">
-            <ul class=" meals d-flex justify-content-center ">
-                <li>
-                    <a href="#" data-category="starters" class="starters">Les entrées</a>
-                </li>
-                <li>
-                    <a href="#" data-category="main-courses" class="main-courses">Les plats</a>
-                </li>
-                <li>
-                    <a href="#" data-category="desserts" class="desserts">Les desserts</a>
-                </li>
-                <li>
-                    <a href="#" data-category="drinks" class="drinks">Les boissons</a>
-                </li>
-            </ul>
-        </nav>
-        <h1 class='mt-4'>La carte</h1>
-        <div class="list-group mt-4 plat" data-category="starters">
-            <h2 class='mt-4'>Nos entrées</h2>
-            {% for entree in entrees %}
-                <div class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ entree.title }}</h5>
-                        <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
-                            €</small>
-                    </div>
-                    <p class="mb-1">{{ entree.description }}</p>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="list-group mt-4 plat" data-category="main-courses">
-            <h2 class='mt-4'>Nos plats</h2>
-            {% for plat in plats %}
-                <div class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ plat.title }}</h5>
-                        <small class="text-muted">{{ plat.price | number_format(2, ',', ' ') }}
-                            €</small>
-                    </div>
-                    <p class="mb-1">{{ plat.description }}</p>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="list-group mt-4 plat" data-category="desserts">
-            <h2 class='mt-4'>Nos desserts</h2>
-            {% for entree in entrees %}
-                <div class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ entree.title }}</h5>
-                        <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
-                            €</small>
-                    </div>
-                    <p class="mb-1">{{ entree.description }}</p>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="list-group mt-4 plat" data-category="drinks">
-            <h2 class='mt-4'>Nos boissons</h2>
-            {% for entree in entrees %}
-                <div class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ entree.title }}</h5>
-                        <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
-                            €</small>
-                    </div>
-                    <p class="mb-1">{{ entree.description }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+	<div class="container mt-4 la-carte">
+		<nav class="nav_menu">
+			<ul class=" meals d-flex justify-content-center ">
+				<li>
+					<a href="#" data-category="starters" class="starters">Les entrées</a>
+				</li>
+				<li>
+					<a href="#" data-category="main-courses" class="main-courses">Les plats</a>
+				</li>
+				<li>
+					<a href="#" data-category="desserts" class="desserts">Les desserts</a>
+				</li>
+				<li>
+					<a href="#" data-category="drinks" class="drinks">Les boissons</a>
+				</li>
+			</ul>
+		</nav>
+		<h1 class='mt-4'>La carte</h1>
+		<div class="list-group mt-4 plat" data-category="starters">
+			<h2 class='mt-4'>Nos entrées</h2>
+			{% for entree in entrees %}
+				<div class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">{{ entree.title }}</h5>
+						<small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
+							€</small>
+					</div>
+					<p class="mb-1">{{ entree.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="list-group mt-4 plat" data-category="main-courses">
+			<h2 class='mt-4'>Nos plats</h2>
+			{% for plat in plats %}
+				<div class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">{{ plat.title }}</h5>
+						<small class="text-muted">{{ plat.price | number_format(2, ',', ' ') }}
+							€</small>
+					</div>
+					<p class="mb-1">{{ plat.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="list-group mt-4 plat" data-category="desserts">
+			<h2 class='mt-4'>Nos desserts</h2>
+			{% for dessert in desserts %}
+				<div class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">{{ dessert.title }}</h5>
+						<small class="text-muted">{{ dessert.price | number_format(2, ',', ' ') }}
+							€</small>
+					</div>
+					<p class="mb-1">{{ dessert.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="list-group mt-4 plat" data-category="drinks">
+			<h2 class='mt-4'>Nos boissons</h2>
+			{% for boisson in boissons %}
+				<div class="list-group-item list-group-item-action flex-column align-items-start">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">{{ boisson.title }}</h5>
+						<small class="text-muted">{{ boisson.price | number_format(2, ',', ' ') }}
+							€</small>
+					</div>
+					<p class="mb-1">{{ boisson.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

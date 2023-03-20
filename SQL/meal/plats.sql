@@ -1,12 +1,6 @@
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
-VALUES
-(
+    meal (title, description, price)
+VALUES (
         'Tartiflette',
         'Pommes de terre, lardons, oignons, reblochon, crème fraîche',
         15
@@ -18,19 +12,14 @@ VALUES (
         LAST_INSERT_ID(), (
             SELECT id
             FROM category
-            WHERE title = 'Plats'
+            WHERE
+                name = 'Plats'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
-VALUES
-(
+    meal (title, description, price)
+VALUES (
         'Raclette',
         'Pommes de terre, charcuterie, fromage à raclette',
         18
@@ -42,19 +31,14 @@ VALUES (
         LAST_INSERT_ID(), (
             SELECT id
             FROM category
-            WHERE title = 'Plats'
+            WHERE
+                name = 'Plats'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
-VALUES
-(
+    meal (title, description, price)
+VALUES (
         'Fondue savoyarde',
         'Fromage à fondue, vin blanc, ail',
         20
@@ -66,19 +50,14 @@ VALUES (
         LAST_INSERT_ID(), (
             SELECT id
             FROM category
-            WHERE title = 'Plats'
+            WHERE
+                name = 'Plats'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
-VALUES
-(
+    meal (title, description, price)
+VALUES (
         'Diots au vin blanc',
         'Diots, vin blanc, oignons, carottes, pommes de terre',
         14
@@ -90,19 +69,14 @@ VALUES (
         LAST_INSERT_ID(), (
             SELECT id
             FROM category
-            WHERE title = 'Plats'
+            WHERE
+                name = 'Plats'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
-VALUES
-(
+    meal (title, description, price)
+VALUES (
         'Crozets au gratin',
         'Crozets, lardons, oignons, crème fraîche, fromage râpé',
         12
@@ -114,19 +88,14 @@ VALUES (
         LAST_INSERT_ID(), (
             SELECT id
             FROM category
-            WHERE title = 'Plats'
+            WHERE
+                name = 'Plats'
         )
     );
 
 INSERT INTO
-    meal (
-        title,
-        description,
-        price,
-        category_id
-    )
-VALUES
-(
+    meal (title, description, price)
+VALUES (
         'Pormoniers',
         'Pormoniers, pommes de terre, oignons, vin blanc',
         16
@@ -138,6 +107,7 @@ VALUES (
         LAST_INSERT_ID(), (
             SELECT id
             FROM category
-            WHERE title = 'Plats'
+            WHERE
+                name = 'Plats'
         )
     );
