@@ -5,14 +5,15 @@
 
 {% block body %}
 
-    <div class="container">
-        <h1 class="mt-4">Réserver votre table</h1>
+	<div class="container">
+		<h1 class="mt-4">Réserver votre table</h1>
 
-        {{ form_start(formReservation) }}
-        {{ form_row(formReservation.Date) }}
-        {{ form_row(formReservation.time_slot) }}
-        {{ form_row(formReservation.Number_of_guests) }}
-        {{ form_row(formReservation.Allergies) }}
-        {{ form_end(formReservation) }}
+		{{ form_start(formReservation) }}
+		{{ form_row(formReservation.Date) }}
+		{{ form_row(formReservation.time_slot) }}
+		{{ form_row(formReservation.Number_of_guests) }}
+		{{ form_row(formReservation.Allergies) }}
+		{{ form_end(formReservation) }}
+	</div>
 
-    {% endblock %}
+{% endblock %}
