@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RestaurantHoursController extends AbstractController
 {
 
-    #[Route('/addhoraire', name: 'app_hours')]
+    #[Route('/addhoraires', name: 'app_hours')]
     #[IsGranted('ROLE_ADMIN')]
     public function createRestaurantHours(ManagerRegistry $doctrine): Response
     {

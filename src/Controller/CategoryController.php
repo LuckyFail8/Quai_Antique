@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/addCategories', name: 'app_category')]
+    #[Route('/addcategories', name: 'app_category')]
     #[IsGranted('ROLE_ADMIN')]
     public function createCategory(ManagerRegistry $doctrine): Response
     {
