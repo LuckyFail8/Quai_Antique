@@ -15,7 +15,6 @@ Avec des fonctionnalités telles que :
 
 
 ## **Pré-requis** : 
----
 - PHP >= [8.1][PHP]
 - Symfony >= 6.1 avec le [CLI Symfony][CLI]
 - Database [MySQL][MySQL]
@@ -24,7 +23,6 @@ Avec des fonctionnalités telles que :
 - [Npm][NPM]
 
 ## **Installation en local** : 
----
 Commencez par cloner le repository
 ```
 git clone https://github.com/LuckyFail8/Quai_Antique.git
@@ -79,7 +77,7 @@ Si vous souhaitez voir l'application côté client, il suffit de vous inscrire �
 Mot de passe : ``password``
 
 ## **Fabriquer avec** : 
----
+
 Ce projet est développé avec :
 
 - [Symfony 6.1][Symfony]
@@ -93,7 +91,6 @@ Bundle utilisé :
 - WebpackEncore [Documentation WebpackEncore][WebpackEncore]
 
 ## **Auteur** : 
----
 [Lionel Regisseur][Linkedin]
 
 [CLI]: https://symfony.com/download
