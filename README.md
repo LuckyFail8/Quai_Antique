@@ -29,6 +29,8 @@ git clone https://github.com/LuckyFail8/Quai_Antique.git
 ```
 Exécuter la commande `cd Quai_Antique` pour vous rendre dans le dossier depuis le terminal.
 
+créez un ces sous-dossiers dans le dossier public `uploads\images`
+
 Tapez ces commandes dans l'ordre pour installer les dépendances composer du projet ainsi que les dépendance npm
 ```
 composer install
@@ -51,8 +53,9 @@ Pour les modifier, vous trouverez les fixture dans le fichier :
 ```
 php bin/console doctrine:fixtures:load
 ```
-Vous pouvez à présent démarrer le serveur symfony :
+Vous pouvez à présent importer les images et les fonts et démarrer le serveur symfony :
 ```
+npm run dev
 symfony server:start
 ```
 Pour finir de remplir la base de données, connectez-vous avec le compte admin générer depuis le chargement des fixtures.
