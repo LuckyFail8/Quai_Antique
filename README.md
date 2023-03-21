@@ -1,5 +1,5 @@
 # **Quai Antique**
-![Site Quai Antique](public/build/images/QuaiAnt_site.png)
+![Site Quai Antique](public/screenshots/QuaiAnt_site.png)
 Ce projet est réalisé dans le cadre de mon ECF. 
 
 Il consiste à créer un site web pour un restaurant fictif appelé "Quai Antique"
