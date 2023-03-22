@@ -1,16 +1,16 @@
 let counter = 0;
-let timer, carrouselItems, slides, slideWidth, carrouselItemTitle;
+let timer, slides, slideWidth, carrouselItemTitle;
 
 window.onload = () => {
     const containerCarrousel = document.querySelector(".container-carrousel");
     const carrouselItems = document.querySelector(".carrousel-items");
     const carrouselItem = document.querySelector(".carrousel-item");
-
     
     let firstImage = carrouselItems.firstElementChild.cloneNode(true);
     carrouselItems.appendChild(firstImage);
     
     slides = Array.from(carrouselItems.children);
+    console.log("cpudp");
     
     slideWidth = carrouselItem.getBoundingClientRect().width;
 
@@ -69,7 +69,7 @@ window.onload = () => {
     }
 
     function startTimer(){
-        timer = setInterval(slideNext, 2000 );
+        timer = setInterval(slideNext, 3500 );
     }
 
 
