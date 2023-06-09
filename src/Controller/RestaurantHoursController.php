@@ -6,6 +6,7 @@ use App\Entity\RestaurantHours;
 use App\Repository\RestaurantHoursRepository;
 use doctrine;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RestaurantHoursController extends AbstractController
 {
 
-    #[Route('/addhoraire', name: 'app_hours')]
+    #[Route('/addhoraires', name: 'app_hours')]
+    #[IsGranted('ROLE_ADMIN')]
     public function createRestaurantHours(ManagerRegistry $doctrine): Response
     {
         $entitymanager = $doctrine->getManager();
@@ -36,10 +38,10 @@ class RestaurantHoursController extends AbstractController
                 $restaurantHour->setDay($dayName)
                     ->setOpeningLunch(\DateTime::createFromFormat('H:i', '11:45'))
                     ->setClosingLunch(\DateTime::createFromFormat('H:i', '14:30'))
-                    ->setPlacesAvailableLunch(250)
+                    ->setPlacesAvailableLunch(50)
                     ->setOpeningDinner(\DateTime::createFromFormat('H:i', '19:00'))
                     ->setClosingDinner(\DateTime::createFromFormat('H:i', '23:00'))
-                    ->setPlacesAvailableDinner(250);
+                    ->setPlacesAvailableDinner(50);
                 $entitymanager->persist($restaurantHour);
             }
 
@@ -51,13 +53,41 @@ class RestaurantHoursController extends AbstractController
         }
     }
 
-    #[Route('/horaire', name: 'app_restaurant_hours')]
+
+    #[Route('/horaire', name: 'restaurant_hour.index')]
     public function index(RestaurantHoursRepository $restaurantHoursRepository): Response
     {
         $restaurantHours = $restaurantHoursRepository->findAll();
 
-        return $this->render('pages/restaurant_hours/index.html.twig', [
+        return $this->render('pages/restaurant_hours/restaurant-hours.html.twig', [
             'restaurantHours' => $restaurantHours
         ]);
+    }
+
+
+    #[Route('/horaires', name: 'app_restaurant_hours')]
+
+    public function getRestaurantHours(RestaurantHoursRepository $restaurantHoursRepository): array
+    {
+        $restaurantHours = $restaurantHoursRepository->findAll();
+
+        $openingLunch = [];
+        $closingLunch = [];
+        $openingDinner = [];
+        $closingDinner = [];
+
+        foreach ($restaurantHours as $hours) {
+            $openingLunch[$hours->getDay()] = $hours->getOpeningLunch();
+            $closingLunch[$hours->getDay()] = $hours->getOpeningLunch();
+            $openingDinner[$hours->getDay()] = $hours->getOpeningDinner();
+            $closingDinner[$hours->getDay()] = $hours->getClosingDinner();
+        }
+
+        return [
+            'openingLunch' => $openingLunch,
+            'closingLunch' => $closingLunch,
+            'openingDinner' => $openingDinner,
+            'closingDinner' => $closingDinner
+        ];
     }
 }

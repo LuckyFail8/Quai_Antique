@@ -197,26 +197,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
 
     /**
-     * @return Collection<int, allergy>
+     * @return Collection<int, Allergy>
      */
     public function getAllergies(): Collection
     {
         return $this->Allergies;
     }
 
-    public function addAllergy(allergy $allergy): self
+    public function addAllergy(Allergy $allergy): self
     {
         if (!$this->Allergies->contains($allergy)) {
             $this->Allergies->add($allergy);
+            $allergy->addUser($this);
         }
 
         return $this;
     }
 
-    public function removeAllergy(allergy $allergy): self
+    public function removeAllergy(Allergy $allergy): self
     {
         $this->Allergies->removeElement($allergy);
 
+        return $this;
+    }
+
+    public function removeAllAllergies(): self
+    {
+        $this->Allergies->clear();
         return $this;
     }
 
@@ -260,5 +267,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->Name . ' ' . $this->Last_name;
     }
 }

@@ -6,11 +6,13 @@ use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/categorie', name: 'app_category')]
+    #[Route('/addcategories', name: 'app_category')]
+    #[IsGranted('ROLE_ADMIN')]
     public function createCategory(ManagerRegistry $doctrine): Response
     {
         $entitymanager = $doctrine->getManager();

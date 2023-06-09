@@ -1,0 +1,31 @@
+h1 {
+    font-family: 'Exo2-Black';
+    font-size: 3rem;
+
+}
+h2 {
+    font-family: 'Exo2-Regular';
+    font-size: 2rem;
+}
+h3 {
+    font-family: 'Exo2-Bold';
+    font-size: 1.5rem;
+}
+
+html {
+    font-family: 'Arvo-Regular';
+    font-size: 25px;
+}
+strong {
+    font-family: 'Arvo-Bold';
+}
+a {
+    font-family: 'Arvo-Bold';
+    text-decoration: none;
+}
+
+@media (min-width: 992px) {
+    html {
+        font-size: 16px;
+    }
+}

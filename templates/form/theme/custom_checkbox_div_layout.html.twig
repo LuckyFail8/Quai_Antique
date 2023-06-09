@@ -1,0 +1,8 @@
+{% block _allergies_widget %}
+    {% for child in form %}
+        <div class="allergy">
+            {{ - form_widget(child) - }}
+            {{ - form_label(child) - }}
+        </div>
+    {% endfor %}
+{% endblock %}

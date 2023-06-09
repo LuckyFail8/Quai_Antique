@@ -56,6 +56,10 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+            $allergies = $form->get('Allergies')->getData();
+            foreach ($allergies as $allergy) {
+                $user->addAllergy($allergy);
+            }
 
             $this->addFlash(
                 'success',

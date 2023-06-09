@@ -17,19 +17,21 @@ class Photo
     #[ORM\Column]
     private ?int $id = null;
 
-
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 500, nullable: true)]
     private ?string $ImageName = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $file = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ImageTitle = null;
 
-    #[Vich\UploadableField(mapping: 'quai_images', fileNameProperty: 'file')]
+    #[Vich\UploadableField(mapping: 'quai_images', fileNameProperty: 'ImageName')]
     private ?File $ImageFile = null;
 
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Text_alt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $Carrousel = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $CreatedAt = null;
@@ -68,11 +70,11 @@ class Photo
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $ImageFile
      */
-    public function setImageFile(?File $file = null): void
+    public function setImageFile(?File $ImageName = null): void
     {
-        $this->ImageFile = $file;
+        $this->ImageFile = $ImageName;
 
-        if (null !== $file) {
+        if (null !== $ImageName) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->UpdatedAt = new \DateTimeImmutable();
@@ -92,6 +94,19 @@ class Photo
     public function getImageName(): ?string
     {
         return $this->ImageName;
+    }
+
+
+    public function isCarrousel(): ?bool
+    {
+        return $this->Carrousel;
+    }
+
+    public function setCarrousel(?bool $Carrousel): self
+    {
+        $this->Carrousel = $Carrousel;
+
+        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
@@ -118,16 +133,21 @@ class Photo
         return $this;
     }
 
-
-    public function getFile(): ?string
+    /**
+     * @return string|null
+     */
+    public function getImageTitle(): ?string
     {
-        return $this->file;
+        return $this->ImageTitle;
     }
 
-    public function setFile($file): self
+    /**
+     * @param string|null $ImageTitle 
+     * @return self
+     */
+    public function setImageTitle(?string $ImageTitle): self
     {
-        $this->file = $file;
-
+        $this->ImageTitle = $ImageTitle;
         return $this;
     }
 }

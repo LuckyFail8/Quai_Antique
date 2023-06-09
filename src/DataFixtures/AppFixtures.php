@@ -27,8 +27,15 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        //Admin
+        $admin = new User();
+        $admin->setName('Hôte d\'acceuil')
+            ->setLastName('Quai Antique')
+            ->setEmail('admin@quaiantique.fr')
+            ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
+            ->setPlainPassword('password');
+        $users[] = $admin;
+        $manager->persist($admin);
 
         //User
         $users = [];
