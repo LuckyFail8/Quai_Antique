@@ -11,10 +11,6 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 import './scripts/timeslot';
-import './scripts/meal';
 import './scripts/navbar';
+import './scripts/meal';
 import './scripts/carrousel';
-
-
-
-

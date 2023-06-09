@@ -22,7 +22,7 @@
 			</ul>
 		</nav>
 		<h1 class='mt-4'>La carte</h1>
-		<div class="list-group mt-4 plat" data-category="starters">
+		<div class="list-group mt-4 plat starters" data-category="starters">
 			<h2 class='mt-4'>Nos entrées</h2>
 			{% for entree in entrees %}
 				<div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -35,7 +35,7 @@
 				</div>
 			{% endfor %}
 		</div>
-		<div class="list-group mt-4 plat" data-category="main-courses">
+		<div class="list-group mt-4 plat main-courses" data-category="main-courses">
 			<h2 class='mt-4'>Nos plats</h2>
 			{% for plat in plats %}
 				<div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -48,7 +48,7 @@
 				</div>
 			{% endfor %}
 		</div>
-		<div class="list-group mt-4 plat" data-category="desserts">
+		<div class="list-group mt-4 plat desserts" data-category="desserts">
 			<h2 class='mt-4'>Nos desserts</h2>
 			{% for dessert in desserts %}
 				<div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -61,7 +61,7 @@
 				</div>
 			{% endfor %}
 		</div>
-		<div class="list-group mt-4 plat" data-category="drinks">
+		<div class="list-group mt-4 plat drinks" data-category="drinks">
 			<h2 class='mt-4'>Nos boissons</h2>
 			{% for boisson in boissons %}
 				<div class="list-group-item list-group-item-action flex-column align-items-start">
