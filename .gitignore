@@ -19,3 +19,4 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 /public/uploads/images/*
+node_modules
